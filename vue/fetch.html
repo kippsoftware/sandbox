@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>UI - Vue for Architects</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<style>
+body {
+		font-family : Verdana, sans-serif;
+		background-color : #000;
+		color : #fff;
+    margin-top : 2em;
+}
+pre {
+		color : #fff;
+}
+</style>
+
+<div class="container">
+<h1>Fetch</h1>
+
+<pre>
+function log(data) {
+  document.getElementById("log").innerHTML = data;
+}
+
+fetch('table.json')
+  .then(response => response.json())
+  .then(data => log(JSON.stringify(data, undefined, 2)));
+</pre>
+
+<p>fetch(url) returns a Promise
+<p>.then(f) calls f with the response; e.g., .json(), .text(), .blob(), which returns a Promise to complete parsing
+<p>.then(f) calls f with the data; if json(), then a JSON object
+
+<pre id="log" style="border:1px solid blue;">
+</pre>
+
+
+
+<script>
+	function log(data) {
+	  document.getElementById("log").innerHTML = data;
+	}
+
+	fetch('table.json')
+		.then(response => response.json())
+		.then(data => log(JSON.stringify(data["rows"], null, 2)));
+</script>

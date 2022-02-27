@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>UX Function</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<style>
+body {
+  font-family : Verdana, sans-serif;
+  background-color : #000;
+  color : #fff;
+  margin-top : 2em;
+  font-size : 14pt;
+}
+pre {
+		color : #fff;
+}
+</style>
+
+<div class="container">
+<h1>UX Functions</h1>
+
+<p>Math. A function is really a set. f(x) = y implies {x,y} is in the set f.
+
+<p>C. A function is really a procedure. You call f with parameter x. Statements within f execute. f returns y.
+Procedures can have side effects.
+
+<p>cfront. A method is a function. o.f(x) = y is semantically identical to f(o,x) = y.
+
+<p>Typed. Function has an aggregate type. Takes types t<sub>1</sub>, ... t<sub>n-1</sub>; returns t<sub>n</sub>
+
+<p>Interpreted. A function is a variable. f(x) = y. f evaluated with x returns y.
+
+<p>Script. A function is an object. f(x) = y implies f.invoke(x) returns y.
+
+<p>Object. Pass around functions like any other variable.
+
+<pre>
+
+function f(x) {
+  return x + 1;
+}
+
+f = function(x) {
+  return x + 1;
+}
+
+f = (x) => x + 1;
+
+myLog = message => console.log(message);
+myLog(new Date().toTimeString());
+
+</pre>
+
+<script>
+function f(x) {
+  return x + 1;
+}
+
+f = function(x) {
+  return x + 1;
+}
+
+f = (x) => x + 1;
+
+myLog = message => console.log(message);
+myLog(new Date().toTimeString());
+</script>

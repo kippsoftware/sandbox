@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>UI - Table</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<style>
+body {
+		font-family : Verdana, sans-serif;
+		background-color : #000;
+		color : #fff;
+		margin-top : 2em;
+}
+</style>
+
+<div class="container">
+<h3>Table</h3>
+
+<div id="app">
+  <table class="table">
+    <tbody>
+     <tr v-for="row in teamRows" :key="row.team">
+       <td>{{ row.team }}</td>
+       <td v-for="time in row.times">{{ time }}</td>
+     </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    teamRows: [
+      { team: 'One', times: ['1', '2', '3'] },
+      { team: 'Two', times: ['4', '5', '6'] },
+      { team: 'Three', times: ['7', '8', '9'] }
+    ]
+  }
+});
+</script>
+

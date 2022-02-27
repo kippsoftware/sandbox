@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>UI - Tab Cards</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<style>
+body {
+		font-family : Verdana, sans-serif;
+		background-color : #000;
+		color : #fff;
+    margin-top : 2em;
+}
+.app {
+		border : 1px solid #999;
+		padding : 10px;
+		width : 800px;
+		height : 600px;
+		background-color : #333;
+}
+.mytab {
+		float : left;
+		margin : 0px 12px 12px 0px;
+		padding-bottom : 4px;
+		min-width : 120px;
+		color : #999;
+		cursor : default;
+}
+.selected {
+		border-bottom : 2px solid #33f;
+		color : #fff;
+}
+.tab:hover {
+		border-bottom : 2px solid #33f;
+		color : #fff;
+}
+.mycard {
+		clear : left;
+}
+</style>
+
+<div class="container">
+
+<h3>Tab Cards</h3>
+
+<div id="tabcards" class="app">
+<tabs-widget>
+  <tab-widget label="First">
+	first card
+  </tab-widget>
+  <tab-widget label="Second">
+	second card
+	</tab-widget>
+  <tab-widget label="Third">
+	third card
+	</tab-widget>
+</tabs-widget>
+</div>
+
+<script>
+Vue.component('tab-widget', {
+		props: ['label'],
+    template: '<div class="mycard" v-show="isSelected"><slot></slot></div>',
+		data () {
+				return { isSelected: true }
+		},
+})
+
+Vue.component('tabs-widget', {
+    template: `
+<div class="tabs">
+  <div v-for='(tab, index) in tabs'
+      :key='index'
+      @click='selectTab(index)'
+      :class='{"mytab" : true, "selected": index == selectedTab}'
+  >{{tab.label}}</div>
+  <slot></slot>
+</div>`,
+		data () {
+				return {
+						tabs: [],
+						selectedTab: 0,
+				}
+		},
+		created () {
+				this.tabs = this.$children
+		},
+    mounted () {
+				this.selectTab(0)
+		},
+		methods: {
+				selectTab(selectedTab) {
+						this.selectedTab = selectedTab
+						this.tabs.forEach((tab, index) => { tab.isSelected = index == selectedTab })
+				}
+		}
+})
+
+var tabCardsApp = new Vue({
+		el: '#tabcards'
+})		
+</script>		
+</body>
+</html>
